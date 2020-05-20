@@ -1,5 +1,6 @@
 package bean;
 
+//收藏夹
 public class Favor {
 
 	private Integer id;
