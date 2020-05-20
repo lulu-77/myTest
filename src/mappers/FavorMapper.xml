@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<mapper namespace="mapper.FavorMapper">
+
+	<!-- 添加喜好数据 -->
+	<!-- void insert(Favor favor) -->
+	<insert id="insert" 
+		parameterType="bean.Favor">
+		
+		insert into Favor(
+			userId,typeId,click
+		)values(
+			#{userId},#{typeId},#{click}
+		)
+	</insert>
+	
+	<!-- 查询指定对象的favor对象 -->
+	<!-- List<Favor> getFavorByUserid(Integer userId); -->
+
+	<select id="getFavorByUserid" 
+			resultType="bean.Favor">
+		select 
+			id,userId,typeId,click
+		from 
+			Favor
+		where 
+			userId=#{userId}	
+	</select>
+	
+	<!-- 查询指定对象的favor对象 -->
+	<!-- Favor getFavorByUseridTypeid(Integer userId,Integer typeId); -->
+
+	<select id="getFavorByUseridTypeid" 
+			resultType="bean.Favor">
+		select 
+			id,userId,typeId,click
+		from 
+			Favor
+		where 
+			userId=#{userId}
+		and
+			typeId=#{typeId}
+	</select>
+	
+	
+	<!-- 修改times -->
+	<!-- void update(Favor  favor) -->
+	<update id="update" 
+		parameterType="bean.Favor">
+		update
+			Favor
+		set
+			click=#{click}
+		where
+			userId=#{userId}
+		and
+			typeId=#{typeId}
+	</update>
+	
+	<!-- 查询用户的喜好的类型信息 -->
+	<!-- List<Type> selectAll(Integer userId); -->
+	<select id="selectAll" 
+		resultType="bean.Type">
+		
+		select 
+			Type.id,
+			Type.typeName as typeName
+		from 
+			Favor,Type 
+		where
+			Type.id = Favor.typeId
+		and 
+			userId = #{userId} 
+		order by
+			  Favor.click desc
+	</select>
+	<!-- 删除t_cart表中的商品信息 -->
+	
+	<!-- void deleteByCartId(Integer id) -->
+	<delete id="deleteByFavorId">
+		delete
+		from
+			Favor
+		where
+			id=#{id}
+	</delete>
+	
+	<!-- 批量删除 -->
+	<!-- void deleteByBatch(Integer[] ids) -->
+	<delete id="deleteByBatch">
+		delete from Favor
+		where 
+			id in
+			<foreach collection="array" item="id"
+				open="(" separator="," close=")">
+				${id}
+			</foreach>
+		
+	</delete>
+	
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<mapper namespace="mapper.UserMapper">
+	<!-- 添加用户信息 -->
+	<!-- void  insert(User user); -->
+	<insert id="insert" parameterType="bean.User">
+		insert into User (
+			userName,password,phone,email
+		)  values(
+			#{userName},#{password},#{phone},#{email}
+		);
+	</insert>
+	
+	<!-- 修改用户 -->
+	<!-- void update(User user) -->
+	<update id="update" parameterType="bean.User">
+		update User
+		set 
+			<if test="password != null">
+				password = #{password},
+			</if>
+			<if test="userName != null">
+				userName = #{userName},
+			</if>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+			<if test="email != null">
+				email = #{email}
+			</if>
+		where 
+			id = #{id}
+	</update>
+	
+	<!-- 通过用户名查询 -->
+	<!-- User getUserByUserName(String userName); -->
+	<select id="getUserByUserName" resultType="bean.User">
+		select 
+			id,userName,password,phone,email
+		from 
+			User
+		where 
+			userName=#{userName};
+	</select>
+	
+	<!-- 根据id查询用户信息 -->
+	<!-- User getUserById(Integer id) -->
+	<select id="getUserById" resultType="bean.User">
+		select 
+			id,userName,password,phone,email
+		from 
+			User
+		where
+			id=#{id}
+	</select>
+	 
+</mapper>

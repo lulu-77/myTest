@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<mapper namespace="mapper.NewsMapper">
+<!-- void insert(News news); -->
+	<insert id="insert" parameterType="bean.News"
+						useGeneratedKeys="true" keyProperty="id">
+		insert into News(
+			author,date,title,content,picture
+		) values (
+			#{author},#{date},#{title},#{content},#{picture}
+		)
+	</insert>
+
+	<!-- 更新商品的image用于主索引的图片 -->
+	<!-- void updatePicture(Integer newsId, String picture); -->
+	<update id="updatePicture">
+		update News
+		set 
+			picture = #{picture}
+		where
+			id = #{newsId}
+	</update>
+
+	<!-- 
+	List<Goods> getNewsByTypeId(
+			@Param("typeId") Integer typeId,
+			@Param("offset") Integer offset,
+			@Param("count") Integer count);
+	 -->
+	 
+	 <select id="getNewsByTypeId" 
+	 		resultType="bean.News">
+	 	select 
+	 		News.id,
+	 		author,
+	 		date,
+	 		title,
+	 		content,
+	 		picture
+	 	from 
+	 		News
+	 	where
+	 		News.id in (select NewsId from NewsType where typeId=#{typeId})
+	 	order by 
+	 		date desc
+	 	limit #{offset},#{count}
+	 </select>
+	 
+	 
+	 	 <select id="getAllNews" 
+	 		resultType="bean.News">
+	 	select 
+	 		News.id,
+	 		author,
+	 		date,
+	 		title,
+	 		content,
+	 		picture
+	 	from 
+	 		News
+	 	order by
+			  date desc
+	 </select>
+	 <!-- 获取指定分类的记录个数 -->
+	 <!-- Integer getCount(Integer categoryId); -->
+	<select id="getCount" 
+			resultType="java.lang.Integer">
+		
+		select
+			count(*)
+		from 
+			News
+		where 
+			id in (select NewsId from NewsType where typeId=#{typeId})
+		
+	</select>
+	
+	<!-- 获得所有商品的总数 getAllNewsCount -->
+	<select id="getAllNewsCount" resultType="java.lang.Integer">
+		select
+			count(*)
+		from 
+			News
+	</select>
+	
+	<!-- 通过title查询商品 -->
+	<!-- 
+		List<Goods> getGoodsByTitle(
+			@Param("title") String title,
+			@Param("offset") Integer offset,
+			@Param("count") Integer count)
+	 -->
+	 <select id="getNewsByTitle" 
+	 resultType="bean.News">
+	 	select
+	 		id,
+	 		author,
+	 		date,
+	 		title,
+	 		content,
+	 		picture
+	 	from 
+	 		News
+	 	where 
+	 		title like concat(concat('%',#{title}),'%')
+	 	order by
+	 		date desc
+	 	limit #{offset},#{count}
+	 </select>
+	 
+	 <!-- 
+		 getCountByTitle(String title);
+	  -->
+	  <select id="getCountByTitle" resultType="java.lang.Integer">
+	  	select 
+	  		count(*)
+	  	from 
+	  		News
+	  	where
+	 		title like concat(concat('%',#{title}),'%')
+	  </select>
+	  
+	 <!-- 通过id获取商品信息 -->
+	 <!-- Goods getNewsById(String id); -->
+	 <select id="getNewsById" 
+	 	resultType="bean.News">
+	 	
+	 	select
+	 		id,
+	 		author,
+	 		date,
+	 		title,
+	 		content,
+	 		picture
+	 	from 
+	 		News
+	 	where 
+	 		id=#{id}
+	 </select>
+	 
+	 
+	 <!-- 根据商品的id，获得商品所在系列中所有商品的信息：商品id，商品系列规格名item_type -->
+	 <select id="getNewsSeriesSpecsById" resultType="map">
+		select n.id as newsId, n.title as title
+		from News n join NewsType nt 
+		on n.id = nt.newsId
+		where typeId = (
+			select typeId from NewsType 
+			where newsId = #{id}
+		);
+	 </select>
+	 
+</mapper>

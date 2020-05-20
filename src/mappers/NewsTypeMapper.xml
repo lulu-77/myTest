@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<mapper namespace="mapper.NewsTypeMapper">
+	<!-- 添加新闻类别信息 -->
+	<!-- void  insert(NewsType newsType); -->
+	<insert id="insert" parameterType="bean.NewsType">
+		insert into NewsType (
+			newsId,typeId
+		)  values(
+			#{newsId},#{typeId}
+		);
+	</insert>
+	
+	<!-- 修改新闻类别信息 -->
+	<!-- void update(NewsType newsType) -->
+	<update id="update" parameterType="bean.NewsType">
+		update NewsType
+		set 
+			<if test="newsId != null">
+				password = #{newsId},
+			</if>
+			<if test="typeId != null">
+				userName = #{typeId},
+			</if>
+		where 
+			id = #{id}
+	</update>
+	
+	<!-- 通过newsId查询新闻类别 -->
+	<!-- NewsType getTypeIdByNewsId(Integer newsId); -->
+	<select id="getTypeIdByNewsId" resultType="bean.NewsType">
+		select 
+			id,newsId,typeId
+		from 
+			NewsType
+		where 
+			newsId=#{newsId};
+	</select>
+	
+	<!-- 查询指定类别的新闻 -->
+	<!-- List<NewsType> getNewsIdByTypeId(Integer typeId); -->
+	<select id="getNewsIdByTypeId" resultType="bean.NewsType">
+		select 
+			id,newsId,typeId
+		from 
+			NewsType 
+		where 
+			typeId=#{typeId}	
+	</select>
+	 
+</mapper>
