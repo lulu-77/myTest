@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-
+//新闻
 public class News {
 
 	private Integer id;
