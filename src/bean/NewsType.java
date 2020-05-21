@@ -1,6 +1,6 @@
 package bean;
 
-//鏂伴椈绫诲埆
+//新闻类型
 public class NewsType {
 
 	private Integer id;
