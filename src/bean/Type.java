@@ -1,5 +1,6 @@
 package bean;
 
+//类型
 public class Type {
 
 	private Integer id;
