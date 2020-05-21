@@ -1,6 +1,6 @@
 package bean;
 
-//新闻类型
+//新闻类别
 public class NewsType {
 
 	private Integer id;
