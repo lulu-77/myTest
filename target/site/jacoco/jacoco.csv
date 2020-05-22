@@ -1,0 +1,26 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+news-system Maven Webapp,interceptor,AdminLoginInterceptor,29,0,2,0,9,0,5,0,4,0
+news-system Maven Webapp,interceptor,LoginInterceptor,29,0,2,0,9,0,5,0,4,0
+news-system Maven Webapp,bean,ResponseResult,45,0,0,0,20,0,9,0,9,0
+news-system Maven Webapp,bean,NewsType,172,0,30,0,46,0,26,0,11,0
+news-system Maven Webapp,bean,Type,43,0,0,0,13,0,7,0,7,0
+news-system Maven Webapp,bean,Favor,73,0,0,0,21,0,11,0,11,0
+news-system Maven Webapp,bean,User,263,0,46,0,66,0,38,0,15,0
+news-system Maven Webapp,bean,News,162,0,14,0,46,0,24,0,17,0
+news-system Maven Webapp,bean,ProductCount,4,0,0,0,1,0,1,0,1,0
+news-system Maven Webapp,common,Const,70,0,0,0,5,0,4,0,4,0
+news-system Maven Webapp,service,NewsService,60,0,0,0,15,0,12,0,12,0
+news-system Maven Webapp,service,UserService,157,0,12,0,36,0,13,0,7,0
+news-system Maven Webapp,service,NewsTypeService,15,0,0,0,5,0,5,0,5,0
+news-system Maven Webapp,service,TypeService,3,0,0,0,2,0,1,0,1,0
+news-system Maven Webapp,service,FavorService,94,0,4,0,24,0,9,0,7,0
+news-system Maven Webapp,controller,NewsController,322,0,18,0,64,0,14,0,5,0
+news-system Maven Webapp,controller,NewsTypeController,3,0,0,0,2,0,1,0,1,0
+news-system Maven Webapp,controller,FavorController,29,0,0,0,8,0,4,0,4,0
+news-system Maven Webapp,controller,TypeController,3,0,0,0,2,0,1,0,1,0
+news-system Maven Webapp,controller,BaseController,18,0,2,0,6,0,3,0,2,0
+news-system Maven Webapp,controller,UserController,164,0,4,0,41,0,12,0,10,0
+news-system Maven Webapp,controller,CommonController,46,0,2,0,9,0,3,0,2,0
+news-system Maven Webapp,service.ex,UserNotFoundException,7,0,0,0,4,0,2,0,2,0
+news-system Maven Webapp,service.ex,UsernameAlreadyExistException,7,0,0,0,4,0,2,0,2,0
+news-system Maven Webapp,service.ex,PasswordNotMatchException,7,0,0,0,4,0,2,0,2,0

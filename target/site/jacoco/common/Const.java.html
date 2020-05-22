@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Const.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">news-system Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">common</a> &gt; <span class="el_source">Const.java</span></div><h1>Const.java</h1><pre class="source lang-java linenums">package common;
+
+<span class="nc" id="L3">public final class Const {</span>
+
+	public static final int PAGE_SIZE = 10;
+	public static final int ERROR = -1;
+	public static final int FAILED = 0;
+	public static final int SUCCESS = 1;
+	
+	public static final int STATUS_TRANSACTION_INCOMPLETE = 0;	
+	public static final int STATUS_TRANSACTION_INCOMPLETE_CANCELLED_BY_SYSTEM = 1;	
+	public static final int STATUS_AWAITING_PAYMENT = 2;	
+	public static final int STATUS_PAYMENT_COMPLETED = 3;	
+	public static final int STATUS_PAYMENT_FAILED = 4;		
+	public static final int STATUS_PAYMENT_CANCELLED = 5;	
+	public static final int STATUS_PAYMENT_REFUNDED = 6;	
+<span class="nc" id="L17">	public static final String[] paymentStatusArray = {&quot;交易未完成&quot;, &quot;交易不完整（由系统取消）&quot;, &quot;等待付款&quot;,</span>
+										&quot;付款成功&quot;, &quot;付款失败&quot;, &quot;付款已取消&quot;, &quot;付款已付款&quot;};
+	
+	public static final int STATUS_AWAITING_ORDER = 0;		
+	public static final int STATUS_ORDER_IN_PROCESSING = 1;	
+	public static final int STATUS_ORDER_DISPATCHED = 2;	
+	public static final int STATUS_ORDER_DELIVERED = 3;		
+	public static final int STATUS_ORDER_RETURNED = 4;		
+	public static final int STATUS_ORDER_CANCELED = 5;
+<span class="nc" id="L26">	public static final String[] shippingStatusArray = {&quot;待处理&quot;, &quot;处理&quot;, &quot;已发货&quot;, &quot;已交付&quot;, &quot;已&quot;, &quot;订单已取消&quot;};</span>
+	
+	public static String getPaymentStatusName(int paymentStatus) {
+<span class="nc" id="L29">		return paymentStatusArray[paymentStatus];</span>
+	}
+	public static String getShippingStatusName(int shippingStatus) {
+<span class="nc" id="L32">		return shippingStatusArray[shippingStatus];</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

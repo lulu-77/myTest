@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FavorService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">news-system Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">FavorService.java</span></div><h1>FavorService.java</h1><pre class="source lang-java linenums">package service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import bean.Favor;
+import bean.Type;
+import mapper.FavorMapper;
+@Service
+<span class="nc" id="L14">public class FavorService implements IFavorService{</span>
+	
+	@Resource
+	private FavorMapper favorMapper;
+
+	public void addFavor(Favor favor) {
+
+<span class="nc" id="L21">		List&lt;Favor&gt; listFavor = new ArrayList&lt;Favor&gt;();</span>
+		
+		
+		try {
+<span class="nc" id="L25">			listFavor = favorMapper.getFavorByUserid(favor.getUserId());</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">			for(Favor c : listFavor){</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">				if( c.getTypeId().equals(favor.getTypeId()) ){</span>
+<span class="nc" id="L28">					Integer quantity = favor.getClick()+ 1;</span>
+<span class="nc" id="L29">					favor.setClick(quantity);</span>
+<span class="nc" id="L30">					favorMapper.update(favor);</span>
+<span class="nc" id="L31">					return ;</span>
+				}
+<span class="nc" id="L33">			}</span>
+<span class="nc" id="L34">			favorMapper.insert(favor);</span>
+<span class="nc" id="L35">		}catch(NullPointerException e) {</span>
+<span class="nc" id="L36">			favorMapper.insert(favor);</span>
+<span class="nc" id="L37">			System.out.println(favor.getClick() + favor.getUserId() + favor.getTypeId());</span>
+<span class="nc" id="L38">		}</span>
+<span class="nc" id="L39">	}</span>
+	
+
+	@Override
+	public List&lt;Type&gt; getAll(Integer userId) {
+		
+<span class="nc" id="L45">		return favorMapper.selectAll(userId);</span>
+	}
+
+	@Override
+	public void deleteByFavorId(Integer id) {
+<span class="nc" id="L50">		favorMapper.deleteByFavorId(id);</span>
+		
+<span class="nc" id="L52">	}</span>
+	
+
+	@Override
+	public void deleteByBatch(Integer[] ids) {
+<span class="nc" id="L57">		favorMapper.deleteByBatch(ids);</span>
+		
+<span class="nc" id="L59">	}</span>
+
+
+	@Override
+	public Favor getFavorByUseridTypeid(Integer userId, Integer typeId) {
+<span class="nc" id="L64">		return favorMapper.getFavorByUseridTypeid(userId, typeId);</span>
+	}
+	
+	public void setFavorMapper(FavorMapper favorMapper) {
+<span class="nc" id="L68">		this.favorMapper = favorMapper;</span>
+<span class="nc" id="L69">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

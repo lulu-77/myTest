@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>News.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">news-system Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">bean</a> &gt; <span class="el_source">News.java</span></div><h1>News.java</h1><pre class="source lang-java linenums">package bean;
+
+import java.util.Date;
+
+//新闻
+public class News {
+
+	private Integer id;
+	private String author;
+	private Date date;
+	private String title;
+	private String content;
+	private String picture;
+	
+	
+	public int getId() {
+<span class="nc" id="L17">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L21">		this.id = id;</span>
+<span class="nc" id="L22">	}</span>
+
+	public String getAuthor() {
+<span class="nc" id="L25">		return author;</span>
+	}
+
+	public void setAuthor(String author) {
+<span class="nc" id="L29">		this.author = author;</span>
+<span class="nc" id="L30">	}</span>
+
+	public Date getDate() {
+<span class="nc" id="L33">		return date;</span>
+	}
+
+	public void setDate(Date date) {
+<span class="nc" id="L37">		this.date = date;</span>
+<span class="nc" id="L38">	}</span>
+
+	public String getTitle() {
+<span class="nc" id="L41">		return title;</span>
+	}
+
+	public void setTitle(String title) {
+<span class="nc" id="L45">		this.title = title;</span>
+<span class="nc" id="L46">	}</span>
+
+	public String getContent() {
+<span class="nc" id="L49">		return content;</span>
+	}
+
+	public void setContent(String content) {
+<span class="nc" id="L53">		this.content = content;</span>
+<span class="nc" id="L54">	}</span>
+
+	public String getPicture() {
+<span class="nc" id="L57">		return picture;</span>
+	}
+
+	public void setPicture(String picture) {
+<span class="nc" id="L61">		this.picture = picture;</span>
+<span class="nc" id="L62">	}</span>
+
+
+	@Override
+	public String toString() {
+<span class="nc" id="L67">		return &quot;News [id=&quot; + id + &quot;, author=&quot; + author + &quot;, date=&quot; + date + &quot;, title=&quot; + title + &quot;, content=&quot; + content</span>
+				+ &quot;, picture=&quot; + picture + &quot;]&quot;;
+	}
+
+	public News() {
+<span class="nc" id="L72">		super();</span>
+<span class="nc" id="L73">	}</span>
+	
+	public News(int id, String author, Date date, String title, String content, String picture) {
+<span class="nc" id="L76">		super();</span>
+<span class="nc" id="L77">		this.id = id;</span>
+<span class="nc" id="L78">		this.author = author;</span>
+<span class="nc" id="L79">		this.date = date;</span>
+<span class="nc" id="L80">		this.title = title;</span>
+<span class="nc" id="L81">		this.content = content;</span>
+<span class="nc" id="L82">		this.picture = picture;</span>
+<span class="nc" id="L83">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L87">		final int prime = 31;</span>
+<span class="nc" id="L88">		int result = 1;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		result = prime * result + ((id == null) ? 0 : id.hashCode());</span>
+<span class="nc" id="L90">		return result;</span>
+	}
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L95">			return true;</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L97">			return false;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L99">			return false;</span>
+<span class="nc" id="L100">		News other = (News) obj;</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">		if (id == null) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if (other.id != null)</span>
+<span class="nc" id="L103">				return false;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		} else if (!id.equals(other.id))</span>
+<span class="nc" id="L105">			return false;</span>
+<span class="nc" id="L106">		return true;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">news-system Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import bean.ResponseResult;
+import bean.User;
+import controller.BaseController;
+import common.Const;
+import service.IUserService;
+import service.ex.PasswordNotMatchException;
+import service.ex.UserNotFoundException;
+
+@Controller
+@RequestMapping(&quot;/user&quot;)
+<span class="nc" id="L20">public class UserController extends BaseController{</span>
+	@Resource
+	private IUserService userService;
+
+	/**
+	 * 显示注册画面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(&quot;/showRegister.do&quot;)
+	public String showRegister() {
+<span class="nc" id="L31">		return &quot;register&quot;;</span>
+	}
+
+	/**
+	 * 显示登录画面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(&quot;/showLogin.do&quot;)
+	public String showLogin() {
+<span class="nc" id="L41">		return &quot;login&quot;;</span>
+	}
+
+	/**
+	 * 显示修改密码页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(&quot;/showPassword.do&quot;)
+	public String showPassword() {
+<span class="nc" id="L51">		return &quot;password&quot;;</span>
+	}
+
+	@RequestMapping(&quot;/checkUsername.do&quot;)
+	@ResponseBody
+	public ResponseResult&lt;Void&gt; checkUsername(String username) {
+		ResponseResult&lt;Void&gt; rr;
+		// 如果返回true,表示用户名存在,
+		// 如果返回false,表示用户名不存在
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		if (userService.checkUsernameHasExist(username)) {</span>
+<span class="nc" id="L61">			rr = new ResponseResult&lt;Void&gt;(0, &quot;用户名已经存在&quot;);</span>
+		} else {
+<span class="nc" id="L63">			rr = new ResponseResult&lt;Void&gt;(1, &quot;用户名可以使用&quot;);</span>
+		}
+<span class="nc" id="L65">		return rr;</span>
+	}
+
+	@RequestMapping(&quot;/register.do&quot;)
+	@ResponseBody
+	public ResponseResult&lt;Void&gt; register(
+			@RequestParam(&quot;uname&quot;) String username, 
+			@RequestParam(&quot;upwd&quot;) String password,
+			String email,String phone) {
+		ResponseResult&lt;Void&gt; rr;
+<span class="nc" id="L75">		User user = new User();</span>
+<span class="nc" id="L76">		user.setUserName(username);</span>
+<span class="nc" id="L77">		user.setPassword(password);</span>
+<span class="nc" id="L78">		user.setPhone(phone);</span>
+<span class="nc" id="L79">		user.setEmail(email);</span>
+		
+		// set方法给User对象赋值
+		try {
+<span class="nc" id="L83">			userService.register(user);</span>
+<span class="nc" id="L84">			rr = new ResponseResult&lt;Void&gt;(1, &quot;注册成功&quot;);</span>
+<span class="nc" id="L85">		} catch (Exception e) {</span>
+<span class="nc" id="L86">			rr = new ResponseResult&lt;Void&gt;(0, e.getMessage());</span>
+<span class="nc" id="L87">		}</span>
+<span class="nc" id="L88">		return rr;</span>
+	}
+
+	@RequestMapping(&quot;/login.do&quot;)
+	@ResponseBody
+	public ResponseResult&lt;Void&gt; login(String username, String password, HttpSession session) {
+		ResponseResult&lt;Void&gt; rr;
+		try {
+<span class="nc" id="L96">			User user = userService.login(username, password);</span>
+<span class="nc" id="L97">			session.setAttribute(&quot;user&quot;, user);</span>
+<span class="nc" id="L98">			rr = new ResponseResult&lt;Void&gt;(1, &quot;登录成功&quot;);</span>
+<span class="nc" id="L99">		} catch (UserNotFoundException e) {</span>
+<span class="nc" id="L100">			rr = new ResponseResult&lt;Void&gt;(0, e.getMessage());</span>
+<span class="nc" id="L101">		} catch (PasswordNotMatchException e) {</span>
+<span class="nc" id="L102">			rr = new ResponseResult&lt;Void&gt;(-1, e.getMessage());</span>
+<span class="nc" id="L103">		}</span>
+<span class="nc" id="L104">		return rr;</span>
+	}
+
+	@RequestMapping(&quot;/logout.do&quot;)
+	public String logout(HttpSession session) {
+<span class="nc" id="L109">		session.invalidate();</span>
+<span class="nc" id="L110">		return &quot;redirect:../main/showIndex.do&quot;;</span>
+	}
+
+	@RequestMapping(&quot;/updatePassword.do&quot;)
+	@ResponseBody
+	public ResponseResult&lt;Void&gt; updatePassword(HttpSession session, String oldPassword, String newPassword) {
+		ResponseResult&lt;Void&gt; rr;
+		try {
+<span class="nc" id="L118">			Integer id = this.getUid(session);</span>
+<span class="nc" id="L119">			userService.changePassword(id, oldPassword, newPassword);</span>
+<span class="nc" id="L120">			rr = new ResponseResult&lt;Void&gt;(1, &quot;修改成功&quot;);</span>
+<span class="nc" id="L121">		} catch (RuntimeException e) {</span>
+<span class="nc" id="L122">			rr = new ResponseResult&lt;Void&gt;(0, e.getMessage());</span>
+<span class="nc" id="L123">		}</span>
+<span class="nc" id="L124">		return rr;</span>
+
+	}
+
+	@RequestMapping(&quot;checkLoginUsername.do&quot;)
+	@ResponseBody
+	public ResponseResult&lt;Void&gt; checkLoginUsername(String username) {
+		ResponseResult&lt;Void&gt; rr;
+		// 如果返回true,表示用户名存在,
+		// 如果返回false,表示用户名不存在
+<span class="nc bnc" id="L134" title="All 2 branches missed.">		if (userService.checkUsernameHasExist(username)) {</span>
+<span class="nc" id="L135">			rr = new ResponseResult&lt;Void&gt;(Const.SUCCESS, &quot;用户名存在&quot;);</span>
+		} else {
+<span class="nc" id="L137">			rr = new ResponseResult&lt;Void&gt;(Const.FAILED, &quot;用户名不存在&quot;);</span>
+		}
+<span class="nc" id="L139">		return rr;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

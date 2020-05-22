@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NewsType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">news-system Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">bean</a> &gt; <span class="el_source">NewsType.java</span></div><h1>NewsType.java</h1><pre class="source lang-java linenums">package bean;
+
+public class NewsType {
+
+	private Integer id;
+	private Integer newsId;
+	private Integer typeId;
+	
+	
+	public Integer getId() {
+<span class="nc" id="L11">		return id;</span>
+	}
+
+	public void setId(Integer id) {
+<span class="nc" id="L15">		this.id = id;</span>
+<span class="nc" id="L16">	}</span>
+
+	public Integer getNewsId() {
+<span class="nc" id="L19">		return newsId;</span>
+	}
+
+	public void setNewsId(Integer newsId) {
+<span class="nc" id="L23">		this.newsId = newsId;</span>
+<span class="nc" id="L24">	}</span>
+
+	public Integer getTypeId() {
+<span class="nc" id="L27">		return typeId;</span>
+	}
+
+	public void setTypeId(Integer typeId) {
+<span class="nc" id="L31">		this.typeId = typeId;</span>
+<span class="nc" id="L32">	}</span>
+
+	@Override
+	public String toString() {
+<span class="nc" id="L36">		return &quot;NewsType [id=&quot; + id + &quot;, newsId=&quot; + newsId + &quot;, typeId=&quot; + typeId + &quot;]&quot;;</span>
+	}
+	public NewsType() {
+<span class="nc" id="L39">		super();</span>
+<span class="nc" id="L40">	}</span>
+	
+	public NewsType(Integer id, Integer newsId, Integer typeId) {
+<span class="nc" id="L43">		super();</span>
+<span class="nc" id="L44">		this.id = id;</span>
+<span class="nc" id="L45">		this.newsId = newsId;</span>
+<span class="nc" id="L46">		this.typeId = typeId;</span>
+<span class="nc" id="L47">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L51">		final int prime = 31;</span>
+<span class="nc" id="L52">		int result = 1;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		result = prime * result + ((id == null) ? 0 : id.hashCode());</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		result = prime * result + ((newsId == null) ? 0 : newsId.hashCode());</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		result = prime * result + ((typeId == null) ? 0 : typeId.hashCode());</span>
+<span class="nc" id="L56">		return result;</span>
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L62">			return true;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L64">			return false;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L66">			return false;</span>
+<span class="nc" id="L67">		NewsType other = (NewsType) obj;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">		if (id == null) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">			if (other.id != null)</span>
+<span class="nc" id="L70">				return false;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		} else if (!id.equals(other.id))</span>
+<span class="nc" id="L72">			return false;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		if (newsId == null) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">			if (other.newsId != null)</span>
+<span class="nc" id="L75">				return false;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		} else if (!newsId.equals(other.newsId))</span>
+<span class="nc" id="L77">			return false;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		if (typeId == null) {</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">			if (other.typeId != null)</span>
+<span class="nc" id="L80">				return false;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">		} else if (!typeId.equals(other.typeId))</span>
+<span class="nc" id="L82">			return false;</span>
+<span class="nc" id="L83">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

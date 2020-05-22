@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">news-system Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package service;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import bean.User;
+import mapper.UserMapper;
+import service.ex.PasswordNotMatchException;
+import service.ex.UserNotFoundException;
+import service.ex.UsernameAlreadyExistException;
+
+@Service
+<span class="nc" id="L16">public class UserService implements IUserService {</span>
+	@Resource
+	private UserMapper userMapper;
+	
+	//从db.properties文件中,获取盐,给salt赋值
+	@Value(&quot;#{dbConfig.salt}&quot;)
+	private String salt;
+	
+	public void register(User user) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L26">		User user1 = userMapper.getUserByUserName(</span>
+				user.getUserName());
+			//用户名不存在
+<span class="nc bnc" id="L29" title="All 2 branches missed.">			if(user1==null){</span>
+				/**
+				 * md5加密
+				 */
+<span class="nc" id="L33">				String pwd = user.getPassword();</span>
+				
+				//生成md5密码
+<span class="nc" id="L36">				String md5 = DigestUtils.md5Hex(pwd+salt);</span>
+<span class="nc" id="L37">				user.setPassword(md5);</span>
+<span class="nc" id="L38">				userMapper.insert(user);</span>
+<span class="nc" id="L39">			}else{</span>
+				//用户名存在,抛出异常
+<span class="nc" id="L41">				throw new UsernameAlreadyExistException(&quot;用户名已经存在,请重新输入!&quot;);</span>
+			}
+<span class="nc" id="L43">	}</span>
+
+	/**
+	 * 如果用户名存在,返回true,否则返回false
+	 */
+	public boolean checkUsernameHasExist(String username) {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">		if(userMapper.getUserByUserName(username)==null){</span>
+<span class="nc" id="L50">			return false;</span>
+		}else{
+<span class="nc" id="L52">			return true;</span>
+		}
+	}
+	
+	/**
+	 * 用户登录
+	 * @throws Exception 
+	 */
+	public User login(String username, String password) {
+<span class="nc" id="L61">		System.out.println(&quot;login....&quot;);</span>
+<span class="nc" id="L62">		User user = userMapper.getUserByUserName(username);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if(user==null){</span>
+<span class="nc" id="L64">			throw new UserNotFoundException(&quot;用户名不存在!&quot;);</span>
+		}else{
+			//user.getPassword()
+			/**
+			 * String str = user.getPassword();
+			 * str += &quot;dddddd&quot;;
+			 * String strMd5 = DigestUtils.md5Hex(str)
+			 */
+			
+			//生成md5密码
+<span class="nc" id="L74">			String md5 = DigestUtils.md5Hex(password+salt);</span>
+			
+<span class="nc bnc" id="L76" title="All 2 branches missed.">			if(user.getPassword().equals(md5)){</span>
+<span class="nc" id="L77">				return user;</span>
+			}else{
+<span class="nc" id="L79">				throw new PasswordNotMatchException(&quot;密码错误&quot;);</span>
+			}
+		}
+		
+	}
+	
+	/**
+	 * 修改密码
+	 * @throws Exception 
+	 */
+	public void changePassword(Integer id, String oldPassword, String newPassword) {
+<span class="nc" id="L90">		User user = userMapper.getUserById(id);</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		if(user==null){</span>
+<span class="nc" id="L92">			throw new UserNotFoundException(&quot;用户不存在&quot;);</span>
+		}else{
+			/**
+			 * md5加密oldPassword
+			 * 
+			 */
+			
+			//生成md5密码
+<span class="nc" id="L100">			String md5 = DigestUtils.md5Hex(oldPassword+salt);</span>
+			
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if(user.getPassword().equals(md5)){</span>
+<span class="nc" id="L103">				User u = new User();</span>
+<span class="nc" id="L104">				u.setId(id);</span>
+				/**
+				 * md5加密newPassword
+				 */
+<span class="nc" id="L108">				md5 = DigestUtils.md5Hex(newPassword+salt);</span>
+				
+<span class="nc" id="L110">				u.setPassword(md5);</span>
+<span class="nc" id="L111">				userMapper.update(u);</span>
+<span class="nc" id="L112">			}else{</span>
+<span class="nc" id="L113">				throw new PasswordNotMatchException(&quot;密码不匹配异常&quot;);</span>
+			}
+		}
+<span class="nc" id="L116">	}</span>
+	
+	/**
+	 * 通过id查询用户信息
+	 */
+	public User getUserById(Integer id) {
+<span class="nc" id="L122">		return userMapper.getUserById(id);</span>
+	}
+	
+	/**
+	 * 通过用户名查询用户信息
+	 * @param userName
+	 * @return
+	 */
+	public User getUserByUserName(String userName) {
+<span class="nc" id="L131">		return userMapper.getUserByUserName(userName);</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
