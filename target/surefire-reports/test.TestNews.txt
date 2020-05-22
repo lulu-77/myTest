@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: test.TestNews
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.41 sec <<< FAILURE!
-initializationError(test.TestNews)  Time elapsed: 0.073 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.633 sec <<< FAILURE!
+initializationError(test.TestNews)  Time elapsed: 0.022 sec  <<< ERROR!
 java.lang.UnsupportedClassVersionError: org/jmock/integration/junit4/JUnit4Mockery : Unsupported major.minor version 52.0
 	at java.lang.ClassLoader.defineClass1(Native Method)
 	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)

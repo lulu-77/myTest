@@ -30,7 +30,7 @@ import bean.ResponseResult;
 	public String showFavor(HttpSession session,
 			Map&lt;String,Object&gt; map){
 <span class="nc" id="L32">		List&lt;Type&gt; list = favorService.getAll(</span>
-				this.getUid(session));
+<span class="nc" id="L33">				this.getUid(session));</span>
 <span class="nc" id="L34">		map.put(&quot;listFavoriteVo&quot;,list);</span>
 <span class="nc" id="L35">		return &quot;favor&quot;;</span>
 	}

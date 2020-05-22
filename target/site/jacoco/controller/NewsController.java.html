@@ -52,7 +52,7 @@ import service.INewsTypeService;
 		
 <span class="nc bnc" id="L53" title="All 2 branches missed.">		if(type.size() == 0) {</span>
 <span class="nc" id="L54">			listNews =  newsService.getAllNews();</span>
-		}else {
+<span class="nc" id="L55">		}else {</span>
 <span class="nc bnc" id="L56" title="All 2 branches missed.">			for(int i=0;i&lt;type.size();i++) {</span>
 <span class="nc" id="L57">				news = newsService.getNewsByTypeId(type.get(i).getId(), 0, ProductCount.COUNT);</span>
 				//System.out.println(news.size());
@@ -91,22 +91,22 @@ import service.INewsTypeService;
 <span class="nc" id="L91">				favor1.setClick(1);</span>
 <span class="nc" id="L92">				favor1.setTypeId(typeId);</span>
 <span class="nc" id="L93">				favorService.addFavor(favor1);</span>
-<span class="nc" id="L94">			}</span>
+			}
 		}
 		
 		//ͨ��page����ƫ����
 <span class="nc" id="L98">		int offset = (page-1)*ProductCount.COUNT;</span>
 <span class="nc" id="L99">		List&lt;News&gt; listNews = newsService.</span>
-				getNewsByTypeId(
-				typeId, offset, ProductCount.COUNT);
+<span class="nc" id="L100">				getNewsByTypeId(</span>
+<span class="nc" id="L101">				typeId, offset, ProductCount.COUNT);</span>
 <span class="nc" id="L102">		System.out.println(listNews.size());</span>
 		
 <span class="nc" id="L104">		Integer count = newsService.getCount(typeId);</span>
 		
-<span class="nc bnc" id="L106" title="All 2 branches missed.">		Integer pageSize = </span>
-				count%ProductCount.COUNT==0?
-						count/ProductCount.COUNT:
-						count/ProductCount.COUNT+1;
+<span class="nc" id="L106">		Integer pageSize = </span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">				count%ProductCount.COUNT==0?</span>
+<span class="nc" id="L108">						count/ProductCount.COUNT:</span>
+<span class="nc" id="L109">						count/ProductCount.COUNT+1;</span>
 		
 		//��ѯtypeId��Ӧ�������
 		//NewsType newsType = newsTypeService.getNewsTypeById(typeId);
@@ -133,13 +133,13 @@ import service.INewsTypeService;
 		
 <span class="nc" id="L134">		Integer offset = (page-1)*ProductCount.COUNT;</span>
 <span class="nc" id="L135">		List&lt;News&gt; listNews=</span>
-				newsService.getNewsByTitle(
-				title, offset, ProductCount.COUNT);
+<span class="nc" id="L136">				newsService.getNewsByTitle(</span>
+<span class="nc" id="L137">				title, offset, ProductCount.COUNT);</span>
 <span class="nc" id="L138">		Integer count = newsService.getCountByTitle(title);</span>
-<span class="nc bnc" id="L139" title="All 2 branches missed.">		Integer pageSize = </span>
-				count%ProductCount.COUNT==0?
-						count/ProductCount.COUNT:
-						count/ProductCount.COUNT+1;
+<span class="nc" id="L139">		Integer pageSize = </span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">				count%ProductCount.COUNT==0?</span>
+<span class="nc" id="L141">						count/ProductCount.COUNT:</span>
+<span class="nc" id="L142">						count/ProductCount.COUNT+1;</span>
 <span class="nc" id="L143">		map.put(&quot;listNews&quot;,listNews);</span>
 <span class="nc" id="L144">		map.put(&quot;title&quot;,title);</span>
 <span class="nc" id="L145">		map.put(&quot;pageSize&quot;,pageSize);</span>
@@ -170,7 +170,7 @@ import service.INewsTypeService;
 <span class="nc" id="L170">				favor1.setClick(1);</span>
 <span class="nc" id="L171">				favor1.setTypeId(newsType.getTypeId());</span>
 <span class="nc" id="L172">				favorService.addFavor(favor1);</span>
-<span class="nc" id="L173">			}</span>
+			}
 		}
 		
 <span class="nc" id="L176">		map.put(&quot;News&quot;,News);</span>

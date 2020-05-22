@@ -59,7 +59,7 @@ import service.ex.UserNotFoundException;
 		// 如果返回false,表示用户名不存在
 <span class="nc bnc" id="L60" title="All 2 branches missed.">		if (userService.checkUsernameHasExist(username)) {</span>
 <span class="nc" id="L61">			rr = new ResponseResult&lt;Void&gt;(0, &quot;用户名已经存在&quot;);</span>
-		} else {
+<span class="nc" id="L62">		} else {</span>
 <span class="nc" id="L63">			rr = new ResponseResult&lt;Void&gt;(1, &quot;用户名可以使用&quot;);</span>
 		}
 <span class="nc" id="L65">		return rr;</span>
@@ -84,7 +84,7 @@ import service.ex.UserNotFoundException;
 <span class="nc" id="L84">			rr = new ResponseResult&lt;Void&gt;(1, &quot;注册成功&quot;);</span>
 <span class="nc" id="L85">		} catch (Exception e) {</span>
 <span class="nc" id="L86">			rr = new ResponseResult&lt;Void&gt;(0, e.getMessage());</span>
-<span class="nc" id="L87">		}</span>
+		}
 <span class="nc" id="L88">		return rr;</span>
 	}
 
@@ -100,7 +100,7 @@ import service.ex.UserNotFoundException;
 <span class="nc" id="L100">			rr = new ResponseResult&lt;Void&gt;(0, e.getMessage());</span>
 <span class="nc" id="L101">		} catch (PasswordNotMatchException e) {</span>
 <span class="nc" id="L102">			rr = new ResponseResult&lt;Void&gt;(-1, e.getMessage());</span>
-<span class="nc" id="L103">		}</span>
+		}
 <span class="nc" id="L104">		return rr;</span>
 	}
 
@@ -120,7 +120,7 @@ import service.ex.UserNotFoundException;
 <span class="nc" id="L120">			rr = new ResponseResult&lt;Void&gt;(1, &quot;修改成功&quot;);</span>
 <span class="nc" id="L121">		} catch (RuntimeException e) {</span>
 <span class="nc" id="L122">			rr = new ResponseResult&lt;Void&gt;(0, e.getMessage());</span>
-<span class="nc" id="L123">		}</span>
+		}
 <span class="nc" id="L124">		return rr;</span>
 
 	}
@@ -133,7 +133,7 @@ import service.ex.UserNotFoundException;
 		// 如果返回false,表示用户名不存在
 <span class="nc bnc" id="L134" title="All 2 branches missed.">		if (userService.checkUsernameHasExist(username)) {</span>
 <span class="nc" id="L135">			rr = new ResponseResult&lt;Void&gt;(Const.SUCCESS, &quot;用户名存在&quot;);</span>
-		} else {
+<span class="nc" id="L136">		} else {</span>
 <span class="nc" id="L137">			rr = new ResponseResult&lt;Void&gt;(Const.FAILED, &quot;用户名不存在&quot;);</span>
 		}
 <span class="nc" id="L139">		return rr;</span>
