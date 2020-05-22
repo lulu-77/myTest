@@ -8,7 +8,7 @@ node {
     stage('SonarQube analysis') {
         def sonarqubeScannerHome = tool name: 'mysonar-scanner'
 
-        withSonarQubeEnv('mysonarqube') {
+        withSonarQubeEnv('projects-lunaticdev') {
             sh "${sonarqubeScannerHome}/bin/sonar-scanner"
         }
     }
