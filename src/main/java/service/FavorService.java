@@ -64,6 +64,8 @@ public class FavorService implements IFavorService{
 		return favorMapper.getFavorByUseridTypeid(userId, typeId);
 	}
 	
-	
+	public void setFavorMapper(FavorMapper favorMapper) {
+		this.favorMapper = favorMapper;
+	}
 	
 }

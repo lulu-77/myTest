@@ -68,5 +68,9 @@ public class NewsService implements INewsService {
 		
 		return newsMapper.getAllNews();
 	}
+	
+	public void setNewsMapper(NewsMapper mapper) {
+		this.newsMapper = mapper;
+	}
 
 }
