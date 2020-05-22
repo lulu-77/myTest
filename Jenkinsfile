@@ -6,7 +6,7 @@ node {
         git url: 'https://github.com/jfrogdev/project-examples.git'
 
     stage 'Artifactory configuration'
-        rtMaven.tool = maven3.6 // Tool name from Jenkins configuration
+        rtMaven.tool = MAVEN_TOOL // Tool name from Jenkins configuration
         rtMaven.deployer releaseRepo:'automation-mvn-solution-local', snapshotRepo:'automation-mvn-sol-snapshot-local', server: server
         rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
         rtMaven.deployer.addProperty("unit-test", "pass").addProperty("qa-team", "platform", "ui")
