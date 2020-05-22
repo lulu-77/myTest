@@ -6,7 +6,9 @@ node {
     
     stage('build-using-scm'){
      echo 'build';
-     mvn -U -am clean package -DskipTests;
+     withMaven(maven: 'maven 3.6') {
+                    sh "mvn -U -am clean package -DskipTests"
+                    }
     }
     
     stage('Test'){
