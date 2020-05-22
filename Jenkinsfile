@@ -6,7 +6,7 @@ node {
         git url: 'https://github.com/jfrogdev/project-examples.git'
 
     stage 'Artifactory configuration'
-        rtMaven.tool = MAVEN_TOOL // Tool name from Jenkins configuration
+        rtMaven.tool = maven3.6 // Tool name from Jenkins configuration
         rtMaven.deployer releaseRepo:'automation-mvn-solution-local', snapshotRepo:'automation-mvn-sol-snapshot-local', server: server
         rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
         rtMaven.deployer.addProperty("unit-test", "pass").addProperty("qa-team", "platform", "ui")
@@ -14,23 +14,7 @@ node {
         buildInfo.env.capture = true
 
     stage 'Exec Maven'
-        rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install', buildInfo: buildInfo
-
-    stage 'Publish & Scan'
-        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-        if (reportOnTestsForBuild ()) {
-            currentBuild.result = 'UNSTABLE'
-        }
-        server.publishBuildInfo buildInfo
-        if (XRAY_SCAN == "YES") {
-             def scanConfig = [
-                'buildName'      : buildInfo.name,
-                'buildNumber'    : buildInfo.number,
-                'failBuild'      : false
-            ]
-            def scanResult = server.xrayScan scanConfig
-            echo scanResult as String
-        }
+    rtMaven.run
 }
 
 @NonCPS
