@@ -9,11 +9,7 @@ node {
         mvn clean install -DskipTests=ture;
     }
     
-    stage('test-using-scm'){
-     echo 'test';
-    }
-    
-    stage('deploy-using-scm'){
-     echo 'deploy';
+    stage('Test'){
+        // bat 'python3 runtest.py'
     }
 }
