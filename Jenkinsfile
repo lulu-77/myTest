@@ -1,5 +1,5 @@
 node {
-    stage('git-using-scm'){
+    stage('gitclone-using-scm'){
      echo 'gi';
      git branch: 'master',url:'https://github.com/lulu-77/myTest.git';
     }
