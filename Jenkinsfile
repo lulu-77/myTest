@@ -6,7 +6,7 @@ node {
     
     stage('build-using-scm'){
      echo 'build';
-        mvn clean install -DskipTests=ture;
+     mvn -U -am clean package -DskipTests;
     }
     
     stage('Test'){
