@@ -1,17 +1,57 @@
 node {
-    stage('gitclone-using-scm'){
-     echo 'gi';
-     git branch: 'master',url:'https://github.com/lulu-77/myTest.git';
+    def server = Artifactory.newServer url: SERVER_URL, credentialsId: CREDENTIALS
+    def rtMaven = Artifactory.newMavenBuild()
+
+    stage 'Build'
+        git url: 'https://github.com/jfrogdev/project-examples.git'
+
+    stage 'Artifactory configuration'
+        rtMaven.tool = MAVEN_TOOL // Tool name from Jenkins configuration
+        rtMaven.deployer releaseRepo:'automation-mvn-solution-local', snapshotRepo:'automation-mvn-sol-snapshot-local', server: server
+        rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
+        rtMaven.deployer.addProperty("unit-test", "pass").addProperty("qa-team", "platform", "ui")
+        def buildInfo = Artifactory.newBuildInfo()
+        buildInfo.env.capture = true
+
+    stage 'Exec Maven'
+        rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install', buildInfo: buildInfo
+
+    stage 'Publish & Scan'
+        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+        if (reportOnTestsForBuild ()) {
+            currentBuild.result = 'UNSTABLE'
+        }
+        server.publishBuildInfo buildInfo
+        if (XRAY_SCAN == "YES") {
+             def scanConfig = [
+                'buildName'      : buildInfo.name,
+                'buildNumber'    : buildInfo.number,
+                'failBuild'      : false
+            ]
+            def scanResult = server.xrayScan scanConfig
+            echo scanResult as String
+        }
+}
+
+@NonCPS
+def reportOnTestsForBuild () {
+    def failedTests = []
+    def build = manager.build
+    if (build.getAction(hudson.tasks.junit.TestResultAction.class) == null) {
+        println "No Tests"
+        return true
     }
-    
-    stage('build-using-scm'){
-     echo 'build';
-     withMaven(maven: 'maven 3.6') {
-                    sh "mvn -U -am clean package -DskipTests"
-                    }
-    }
-    
-    stage('Test'){
-        // bat 'python3 runtest.py'
+    def result = build.getAction(hudson.tasks.junit.TestResultAction.class).result
+    if ((result == null)) {
+        println "No test results"
+        return true
+    } else {
+        println "Failed test count: " + result.getFailCount()
+        println "Passed test count: " + result.getPassCount()
+        failedTests = result.getFailedTests()
+        failedTests.each { test ->
+            println test.name
+        }
+        return (result.getFailCount())
     }
 }
