@@ -8,21 +8,22 @@ import org.springframework.stereotype.Service;
 
 import bean.NewsType;
 import mapper.NewsTypeMapper;
+import mapper.UserMapper;
 @Service
-<span class="nc" id="L12">public class NewsTypeService implements INewsTypeService{</span>
+<span class="fc" id="L13">public class NewsTypeService implements INewsTypeService{</span>
 	@Resource
 	private NewsTypeMapper newsTypeMapper;
 	
 	public void  insert(NewsType newsType) {
 		
-<span class="nc" id="L18">	}</span>
+<span class="nc" id="L19">	}</span>
 	/**
 	 * 查询指定类别的新闻,并返回集合
 	 * @param typeId
 	 * @return
 	 */
 	public List&lt;NewsType&gt; getNewsIdByTypeId(Integer typeId){
-<span class="nc" id="L25">		return newsTypeMapper.getNewsIdByTypeId(typeId);</span>
+<span class="fc" id="L26">		return newsTypeMapper.getNewsIdByTypeId(typeId);</span>
 	}
 	
 	/**
@@ -31,14 +32,18 @@ import mapper.NewsTypeMapper;
 	 * @return
 	 */
 	public NewsType getTypeIdByNewsId(Integer newsId) {
-<span class="nc" id="L34">		return newsTypeMapper.getTypeIdByNewsId(newsId);</span>
+<span class="nc" id="L35">		return newsTypeMapper.getTypeIdByNewsId(newsId);</span>
 	}
 	
 	@Override
 	public void update(NewsType newsType) {
 		// TODO Auto-generated method stub
 		
-<span class="nc" id="L41">	}</span>
+<span class="nc" id="L42">	}</span>
+	
+	public void setMapper(NewsTypeMapper newsTypeMapper) {
+<span class="fc" id="L45">		this.newsTypeMapper = newsTypeMapper;</span>
+<span class="fc" id="L46">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

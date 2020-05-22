@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import bean.User;
+import mapper.FavorMapper;
 import mapper.UserMapper;
 import service.ex.PasswordNotMatchException;
 import service.ex.UserNotFoundException;
@@ -129,6 +130,10 @@ public class UserService implements IUserService {
 	 */
 	public User getUserByUserName(String userName) {
 		return userMapper.getUserByUserName(userName);
+	}
+	
+	public void setMapper(UserMapper userMapper) {
+		this.userMapper = userMapper;
 	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import bean.NewsType;
 import mapper.NewsTypeMapper;
+import mapper.UserMapper;
 @Service
 public class NewsTypeService implements INewsTypeService{
 	@Resource
@@ -38,6 +39,10 @@ public class NewsTypeService implements INewsTypeService{
 	public void update(NewsType newsType) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setMapper(NewsTypeMapper newsTypeMapper) {
+		this.newsTypeMapper = newsTypeMapper;
 	}
 
 }

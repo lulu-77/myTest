@@ -12,11 +12,17 @@ import org.junit.Test;
 
 import bean.Favor;
 import bean.News;
+import bean.NewsType;
 import bean.Type;
+import bean.User;
 import mapper.FavorMapper;
 import mapper.NewsMapper;
+import mapper.NewsTypeMapper;
+import mapper.UserMapper;
 import service.FavorService;
 import service.NewsService;
+import service.NewsTypeService;
+import service.UserService;
 
 public class TestNews {
 
@@ -101,5 +107,94 @@ public class TestNews {
 			}
 		});
 		assertEquals(favor2,fs.getFavorByUseridTypeid(2, 2));
+		
+		context.checking(new Expectations() {
+			{
+				oneOf(favormapper).deleteByFavorId(1);
+				oneOf(favormapper).getFavorByUseridTypeid(1, 1);
+				will(returnValue(null));
+			}
+		});
+		assertEquals(null,fs.getFavorByUseridTypeid(1, 1));
+		
+		context.checking(new Expectations() {
+			{
+				Integer[] ids = {1,2};
+				oneOf(favormapper).deleteByBatch(ids);;
+				oneOf(favormapper).getFavorByUseridTypeid(1, 1);
+				will(returnValue(null));
+				oneOf(favormapper).getFavorByUseridTypeid(2, 2);
+				will(returnValue(null));
+			}
+		});
+		assertEquals(null,fs.getFavorByUseridTypeid(1, 1));
+		assertEquals(null,fs.getFavorByUseridTypeid(2, 2));
+	}
+	
+	@Test
+	public void UserTest() throws Exception{
+		final UserMapper um = context.mock(UserMapper.class);
+		UserService us = new UserService();
+		us.setMapper(um);
+		
+		final User user = new User();
+		user.setId(1);
+		user.setUserName("aaa");
+		user.setPhone("123");
+		user.setEmail("123");
+		user.setPassword("12345");
+		
+		final User user1 = new User();
+		user.setId(1);
+		user.setUserName("aaab");
+		user.setPhone("123");
+		user.setEmail("123");
+		user.setPassword("12345");
+		
+		context.checking(new Expectations() {
+			{
+				oneOf(um).insert(user);
+				oneOf(um).getUserById(1);
+				will(returnValue(user));
+				oneOf(um).update(user1);
+				oneOf(um).getUserByUserName("aaab");
+				will(returnValue(user1));
+			}
+		});
+		assertEquals(user,us.getUserById(1));
+		assertEquals(user1,us.getUserByUserName("aaab"));
+		
+	}
+	
+	@Test
+	public void NewsTypeTest() throws Exception{
+		final NewsTypeMapper ntMapper = context.mock(NewsTypeMapper.class);
+		NewsTypeService nts = new NewsTypeService();
+		nts.setMapper(ntMapper);
+		
+		final NewsType nt = new NewsType();
+		nt.setId(1);
+		nt.setNewsId(1);
+		nt.setTypeId(1);
+		
+		final List<NewsType> newstypes = new ArrayList<NewsType>();
+		newstypes.add(nt);
+		
+		final NewsType nt1 = new NewsType();
+		nt1.setId(2);
+		nt1.setNewsId(2);
+		nt1.setTypeId(2);
+		
+		final List<NewsType> newstypes1 = new ArrayList<NewsType>();
+		newstypes1.add(nt1);
+		
+		context.checking(new Expectations(){
+			{
+				oneOf(ntMapper).insert(nt1);
+				oneOf(ntMapper).getNewsIdByTypeId(2);
+				will(returnValue(newstypes1));
+			}
+		});
+		assertEquals(newstypes1,nts.getNewsIdByTypeId(2));
 	}
 }

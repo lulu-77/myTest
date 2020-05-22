@@ -11,7 +11,7 @@ import bean.News;
 import mapper.NewsMapper;
 
 @Service
-<span class="nc" id="L14">public class NewsService implements INewsService {</span>
+<span class="fc" id="L14">public class NewsService implements INewsService {</span>
 
 	@Resource
 	private NewsMapper newsMapper;
@@ -44,7 +44,7 @@ import mapper.NewsMapper;
 
 	@Override
 	public News getNewsById(Integer id) {
-<span class="nc" id="L47">		return newsMapper.getNewsById(id);</span>
+<span class="fc" id="L47">		return newsMapper.getNewsById(id);</span>
 	}
 
 	@Override
@@ -66,12 +66,12 @@ import mapper.NewsMapper;
 	@Override
 	public List&lt;News&gt; getAllNews() {
 		
-<span class="nc" id="L69">		return newsMapper.getAllNews();</span>
+<span class="fc" id="L69">		return newsMapper.getAllNews();</span>
 	}
 	
 	public void setNewsMapper(NewsMapper mapper) {
-<span class="nc" id="L73">		this.newsMapper = mapper;</span>
-<span class="nc" id="L74">	}</span>
+<span class="fc" id="L73">		this.newsMapper = mapper;</span>
+<span class="fc" id="L74">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

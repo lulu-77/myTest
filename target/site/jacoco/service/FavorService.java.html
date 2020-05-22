@@ -11,7 +11,7 @@ import bean.Favor;
 import bean.Type;
 import mapper.FavorMapper;
 @Service
-<span class="nc" id="L14">public class FavorService implements IFavorService{</span>
+<span class="fc" id="L14">public class FavorService implements IFavorService{</span>
 	
 	@Resource
 	private FavorMapper favorMapper;
@@ -42,7 +42,7 @@ import mapper.FavorMapper;
 	@Override
 	public List&lt;Type&gt; getAll(Integer userId) {
 		
-<span class="nc" id="L45">		return favorMapper.selectAll(userId);</span>
+<span class="fc" id="L45">		return favorMapper.selectAll(userId);</span>
 	}
 
 	@Override
@@ -61,12 +61,12 @@ import mapper.FavorMapper;
 
 	@Override
 	public Favor getFavorByUseridTypeid(Integer userId, Integer typeId) {
-<span class="nc" id="L64">		return favorMapper.getFavorByUseridTypeid(userId, typeId);</span>
+<span class="fc" id="L64">		return favorMapper.getFavorByUseridTypeid(userId, typeId);</span>
 	}
 	
 	public void setFavorMapper(FavorMapper favorMapper) {
-<span class="nc" id="L68">		this.favorMapper = favorMapper;</span>
-<span class="nc" id="L69">	}</span>
+<span class="fc" id="L68">		this.favorMapper = favorMapper;</span>
+<span class="fc" id="L69">	}</span>
 	
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
