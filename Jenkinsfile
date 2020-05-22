@@ -1,7 +1,7 @@
 node {
     stage('ch-using-scm'){
      echo 'gi';
-     git branch: 'master',url:'http://10.20.16.3/ruancanghui/springbootdemo.git';
+     git branch: 'master',url:'https://github.com/lulu-77/myTest.git';
     }
     
     stage('build-using-scm'){
