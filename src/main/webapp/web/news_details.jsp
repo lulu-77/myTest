@@ -19,16 +19,16 @@
 	<div id="main">
 		<div id="left">
 			<div class="pinlun">
-				<img src="../images/pinlun.png"> <span>120</span>
+				<img src="../images/pinlun.png" alt="pinlun"> <span>120</span>
 			</div>
 			<div class="weibo">
-				<img src="../images/weibo.png"> <span>微博</span>
+				<img src="../images/weibo.png" alt="weibo"> <span>微博</span>
 			</div>
 			<div class="weibo">
-				<img src="../images/qq.png"> <span>Qzone</span>
+				<img src="../images/qq.png" alt="qq"> <span>Qzone</span>
 			</div>
 			<div class="weibo">
-				<img src="../images/weixin.png"> <span>微信</span>
+				<img src="../images/weixin.png" alt="weixin"> <span>微信</span>
 			</div>
 		</div>
 		<!-- 新闻内容 -->
@@ -49,8 +49,8 @@
 					<!-- 标签 -->
 					<!-- 收藏 -->
 					<div class="right-a-keyword-b">
-						<a href=""><img src="../images/shoucang.png"></a><span>收藏</span>
-						<a href=""><img src="../images/jubao.png"></a><span>举报</span>
+						<a href=""><img src="../images/shoucang.png" alt="shoucang"></a><span>收藏</span>
+						<a href=""><img src="../images/jubao.png" alt="jubao"></a><span>举报</span>
 					</div>
 				</div>
 			</div>
@@ -58,7 +58,7 @@
 			<div id="right-b">
 				<div id="right-b-1">
 					<div class="right-b-1-a">
-						<img src="/images/5.jpg">
+						<img src="/images/5.jpg" alt="5">
 						<div class="author">
 							<span class="author-a"><a href="">${News.author}</a></span><br>
 							<a href="" class="author-b">&nbsp;&nbsp;+关注</a>

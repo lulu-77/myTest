@@ -4,7 +4,7 @@
 <header id="top" class="fixed_nav">
     <div id="logo" class="lf" style="margin-top:-10px;" >
     	<a href="${pageContext.request.contextPath}/news/showNewsItem.do">
-        	<img class="animated jello" src="../images/logo.png"  width=150px  height=100px/>
+        	<img class="animated jello" src="../images/logo.png" alt="logo" width=150px  height=100px/>
         </a>   
     </div>    
     <div id="top_input" class="lf">
@@ -24,13 +24,13 @@
         <ul class="lf">
             <li><a></a></li>
         	<c:if test="${user==null}">
-            	<li><a class="login" href="${pageContext.request.contextPath}/user/showLogin.do">登录</a><b>|</b></li>
+            	<li><a class="login" href="${pageContext.request.contextPath}/user/showLogin.do">登录</a><strong>|</strong></li>
         		</c:if>
         		<c:if test="${user!=null}">
-            	<li><a class="login" href="${pageContext.request.contextPath}/user/logout.do">退出</a><b>|</b></li>
+            	<li><a class="login" href="${pageContext.request.contextPath}/user/logout.do">退出</a><strong>|</strong></li>
         	</c:if>
-            <li><a href="#">侵权投诉</a><b>|</b></li>
-            <li><a href="${pageContext.request.contextPath}/news/showNewsItem.do" >相关产品</a><b>|</b></li>  
+            <li><a href="#">侵权投诉</a><strong>|</strong></li>
+            <li><a href="${pageContext.request.contextPath}/news/showNewsItem.do" >相关产品</a><strong>|</strong></li>  
             <li><a href="${pageContext.request.contextPath}/web/help.jsp">帮助</a> </li>    
         </ul>
     </div> 
