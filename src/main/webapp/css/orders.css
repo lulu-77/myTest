@@ -1,0 +1,296 @@
+@charset "utf-8";
+/*我的订单页部分*/
+/*nav_order*/
+a{
+  color:#808080;
+}
+#nav_order {
+    font-family: "SimHei";
+    font-size: 12px;
+    margin-top: 23px;
+    margin-bottom: 18px;
+    margin-left: 167px;
+    width: 200px;
+ }
+#nav_order ul li{
+    margin-right: 40px;
+
+}
+#nav_order ul li{
+    color:#333;
+}
+#nav_order ul li span{
+    color:#666;
+}
+#nav1{
+    width: 1000px;
+    height: 50px;
+    margin: 0px auto;
+    display: block;
+}
+/*container order*/
+/*left*/
+img{border:none;}
+#leftsidebar_box{
+	height: 100%;
+	display : inline-block;
+}
+dl,dt,dd{display:block;margin:0;}
+a{text-decoration:none;}
+
+#container{
+	display:inline-block;
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow: visible;
+    min-height:611px;
+    margin: 0 auto;
+   
+}
+.clearfix { *zoom: 1;}
+.clearfix:after{ content: ""; display: block; height: 0; visibility:hidden; clear: both;}
+
+#leftsidebar_box{
+    width:10%;
+    height:668px;
+    !important;overflow:hidden;
+    !important;
+    !important;
+    /*background-color: #0aa1ed;*/
+    background:#fff;
+    font-size:12px;
+    color:#fff;
+    font-family: "SimHei";
+    margin-left:10%;
+}
+.line{
+    height:2px;
+    width:100%;
+}
+#leftsidebar_box dt{
+    padding-left:40px;
+    padding-right:10px;
+    background-repeat:no-repeat;
+    background-position:10px center;
+    color:#f5f5f5;
+    font-size:14px;
+    font-weight:bold;
+    font-family:"SimHei";
+    position:relative;
+    line-height:36px;
+    cursor:pointer;
+    margin-bottom: 10px;
+}
+
+#leftsidebar_box dd{
+    background-color:#fff;
+    text-align:center;
+    padding-top: 18px;
+    position: relative;
+    font-size:20px;
+    font-weight:bold;
+    font-family:"SimHei";
+    border-radius:2px;
+}
+#leftsidebar_box .my_order dd span{
+    color:black;
+    height:80px;
+    border:4px;
+}
+#leftsidebar_box dd a{
+    color:black;
+    line-height:20px;
+    height:60px;
+    align-bottom:10px;
+}
+#leftsidebar_box dd:hover{
+    background-color:#fba414;
+    line-height:20px;
+    
+}
+#leftsidebar_box dt img{
+    position:absolute;
+    right:10px;
+    top:15px;
+}
+#leftsidebar_box dl dd:last-child{
+    padding-bottom:10px;
+}
+
+/*中间项*/
+#centersidebar_box{
+    display : inline-block;
+    width:46%;
+    height:100%;   
+    min-height: 500px;
+    margin-left:2%;
+    margin-right:2%;
+}
+#centersidebar_box .wrap{
+            width:100%;
+            margin: 0px auto;
+ 
+        }
+.content ul li img:hover{
+            transform: scale(1.2);/*当鼠标移动到图片上时实现放大功能*/
+        }
+.content ul li{
+	height: 100px;
+    overflow: hidden;
+            border-bottom: 1px solid lavender;
+            background: white;
+            list-style-type: none;
+            transition-duration: 0.5s;
+            margin: 10px 10px 5px 0;
+ 
+        }
+        .content ul li:hover{
+            background-color: lavender;
+            transition-duration: 0.5s;
+        }
+        .content .left{
+            overflow: hidden;/*隐藏溢出图片内容*/
+            transition-duration: 0.5s;
+            width: 140px;
+            height:80px;
+            /*background: green;*/
+            float: left;
+            margin-right:20px;
+        }
+        .content .right{
+            width:400px ;
+            float: left;
+            /*background: pink;*/
+        }
+        .right_top{
+            height:60px;
+        }
+        .right_bottom{
+            margin_top:50px;
+        }
+        .right_bottom_left span{
+            color: darkgray;
+            font-size: 12px;
+}
+
+
+
+
+/*右边栏*/
+#Rightsidebar_box{
+	width:20%;
+    height:100%;
+    overflow:hidden;
+    position:absolute;
+    /*background-color: #0aa1ed;*/
+    background:#f5f5f5;
+    font-family: "SimHei";
+    display : inline-block;
+    margin-right:10%;
+}
+#Rightsidebar_box .module-head a{
+	font-size:22px;
+	color:black;
+}
+#Rightsidebar_box .friend-links-content .item a{
+	color:black;
+	line-height:1.4;
+}
+.Alink {
+	display : inline-block;
+	margin-right: 5%;
+	font-size:15px;
+	margin-bottom: 10px;
+}
+#Rightsidebar_box .divne{
+	 height:2px;
+	 width:100%;
+	 background-color:#fba414;
+}
+#freindLink{
+	display:flex;
+	flex-direction: column;
+	
+}
+/*分页器*/
+
+.tcdPageCode{
+    padding-right:20px;
+    text-align: right;
+    color: #ccc;
+    float:right;
+    right:10px;
+    width:60%;
+    height:41px;
+    line-height: 41px;
+    background: -moz-linear-gradient(top, #f5f4f5 0%, #e6e6e5 100%);
+    background: -webkit-linear-gradient(top, #f5f4f5 0%,#e6e6e5 100%);
+    background: -o-linear-gradient(top, #f5f4f5 0%,#e6e6e5 100%);
+    background: -ms-linear-gradient(top, #f5f4f5 0%,#e6e6e5 100%);
+    box-shadow: 3px 3px 6px #ccc;
+    margin-top:25px;
+
+}
+.tcdPageCode a{
+    display: inline-block;
+    color: #0AA1ED;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;border:
+    1px solid #ddd;
+    margin: 0 2px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+.tcdPageCode a:hover{
+    text-decoration: none;
+    border: 1px solid #0AA1ED;
+}
+.tcdPageCode span.current{
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #0AA1ED;
+    border: 1px solid #0AA1ED;
+    border-radius: 4px;
+    vertical-align: middle;}
+.tcdPageCode span.disabled{
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;margin: 0 2px;
+    color: #bfbfbf;
+    background: #f2f2f2;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+/*订单为空*/
+#container .order_empty{
+    float:right;
+    width:292px;
+    height:90px;
+    margin-right:260px;
+    margin-top:130px;
+}
+#container .order_empty >img{
+    float:left;
+    padding:10px;
+}
+#container .order_empty >p{
+    padding:13px;
+}
+/*左导航图标*/
+.my_order dt{background-image:url(../images/myOrder/myOrder.png)}
+.footMark dt{background-image:url(../images/myOrder/pcenter_icon1.png)}
+.address dt{background-image:url(../images/myOrder/pcenter_icon2.png)}
+.count_managment dt{background-image:url(../images/myOrder/pcenter_icon3.png)}
+.safe_management dt{background-image:url(../images/myOrder/pcenter_icon4.png)}
+
+
+

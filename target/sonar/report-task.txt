@@ -1,0 +1,5 @@
+projectKey=hfut:news-system
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/hfut:news-system
+ceTaskId=AXI3tTJoJ3wwt-WwMo0C
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXI3tTJoJ3wwt-WwMo0C
