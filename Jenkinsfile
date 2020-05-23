@@ -18,8 +18,8 @@ node {
     stage('Build'){
     //    sh "mvn clean package -Dmaven.test.skip=true -U"
          withMaven(maven: 'maven3.6'){
-            sh "mvn clean verify"
-             //bat "${mvnHome}/bin/mvn -B verify"
+            //sh "mvn clean verify"
+            bat "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify"
         }
     }
     stage('Test'){
