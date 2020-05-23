@@ -19,11 +19,6 @@ node {
             sh "mvn post-clean"
         }
     }
-    stage('build'){
-        withMaven(maven: 'maven3.6'){
-            sh "mvn install"
-        }
-    }
     stage('Maven Test'){
         // sh 'python3 runtest.py';
         withMaven(maven: 'maven3.6'){
