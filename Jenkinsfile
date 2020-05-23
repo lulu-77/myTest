@@ -12,18 +12,15 @@ node {
             sh "${sonarqubeScannerHome}/bin/sonar-scanner"
         }
     }
-    //def mvnHome = tool 'maven3.6'
-    //def jdkHome = tool 'jdk1.7'
-    //env.PATH = "${mvnHome}/bin:${jdkHome}/bin:${evn.PATH}"
     stage('Build'){
-    //    sh "mvn clean package -Dmaven.test.skip=true -U"
+        // def mvnHome = tool 'maven3.6'
+        // sh "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify"
          withMaven(maven: 'maven3.6'){
-            //sh "mvn clean verify"
-            sh "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify"
+            sh "mvn clean -B -Dmaven.test.failure.ignore verify"
         }
     }
     stage('Test'){
-        // bat 'python3 runtest.py';
+        // sh 'python3 runtest.py';
         withMaven(maven: 'maven3.6'){
             sh "mvn test"
         }
