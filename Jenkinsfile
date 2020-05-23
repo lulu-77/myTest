@@ -2,10 +2,10 @@ node {
     stage('Clean Workspace'){
         sh "rm -rf *"
     }
-    stage('Cit Clone'){
+    stage('Git Clone'){
         git([url: 'https://github.com/lulu-77/myTest.git', branch: 'master']);
     }
-    stage('SonarQube analysis') {
+    stage('SonarQube Analysis') {
         def sonarqubeScannerHome = tool name: 'mysonar-scanner'
 
         withSonarQubeEnv('projects-lunaticdev') {
