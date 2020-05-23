@@ -19,13 +19,14 @@ node {
     //    sh "mvn clean package -Dmaven.test.skip=true -U"
          withMaven(maven: 'maven3.6'){
             sh "mvn clean verify"
+             //bat "${mvnHome}/bin/mvn -B verify"
         }
-        //bat "${mvnHome}/bin/mvn -B verify"
     }
     stage('Test'){
         // bat 'python3 runtest.py';
         withMaven(maven: 'maven3.6'){
-            sh "mvn test"
+            //sh "mvn test"
+            bat "mvn test"
         }
     }
     
