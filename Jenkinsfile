@@ -17,9 +17,10 @@ node {
     //env.PATH = "${mvnHome}/bin:${jdkHome}/bin:${evn.PATH}"
     stage('Build'){
     //    sh "mvn clean package -Dmaven.test.skip=true -U"
-        withMaven(maven: 'maven3.6'){
-            sh "mvn clean install"
-        }
+        // withMaven(maven: 'maven3.6'){
+            //sh "mvn clean install"
+        //}
+        bat "${mvnHome}/bin/mvn -B verify"
     }
     stage('Test'){
         // bat 'python3 runtest.py';
