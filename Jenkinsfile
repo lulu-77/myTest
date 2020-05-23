@@ -18,8 +18,9 @@ node {
     stage('Build'){
     //    sh "mvn clean package -Dmaven.test.skip=true -U"
         withMaven(
-            maven: 'maven3.6',
+            maven: 'maven3.6'){
             sh "mvn clean install"
+        }
     }
     stage('Test'){
         // bat 'python3 runtest.py';
