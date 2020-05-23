@@ -22,8 +22,7 @@ node {
     stage('Maven Test'){
         // sh 'python3 runtest.py';
         withMaven(maven: 'maven3.6'){
-            //sh "mvn test"
-            sh "mvn clean test org.jacoco:jacoco-maven-plugin:0.7.3.201502191951:prepare-agent install -Dmaven.test.failure.ignore=true"
+            sh "mvn test"
         }
     }
     
