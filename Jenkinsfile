@@ -15,11 +15,13 @@ node {
     //def mvnHome = tool 'maven3.6'
     //def jdkHome = tool 'jdk1.7'
     //env.PATH = "${mvnHome}/bin:${jdkHome}/bin:${evn.PATH}"
-    //stage('Build'){
+    stage('Build'){
     //    sh "mvn clean package -Dmaven.test.skip=true -U"
-    //}
-    //stage('Test'){
+        sh "mvn clean install"
+    }
+    stage('Test'){
         // bat 'python3 runtest.py';
-    //}
+        sh "mvn test"
+    }
     
 }
