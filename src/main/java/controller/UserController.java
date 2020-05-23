@@ -68,8 +68,8 @@ public class UserController extends BaseController{
 	@RequestMapping("/register.do")
 	@ResponseBody
 	public ResponseResult<Void> register(
-			@RequestParam("uname") String username, 
-			@RequestParam("upwd") String password,
+			@RequestParam(value="uname",required=false) String username, 
+			@RequestParam(value="upwd",required=false) String password,
 			String email,String phone) {
 		ResponseResult<Void> rr;
 		User user = new User();
@@ -107,7 +107,7 @@ public class UserController extends BaseController{
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:../main/showIndex.do";
+		return "redirect:../user/showLogin.do";
 	}
 
 	@RequestMapping("/updatePassword.do")
