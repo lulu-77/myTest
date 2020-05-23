@@ -13,14 +13,11 @@ node {
         }
     }
     stage('Build'){
-        // def mvnHome = tool 'maven3.6'
-        // sh "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify"
          withMaven(maven: 'maven3.6'){
             sh "mvn clean -B -Dmaven.test.failure.ignore verify"
         }
     }
     stage('Test'){
-        // sh 'python3 runtest.py';
         withMaven(maven: 'maven3.6'){
             sh "mvn test"
         }
