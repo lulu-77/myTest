@@ -12,9 +12,9 @@ node {
             sh "${sonarqubeScannerHome}/bin/sonar-scanner"
         }
     }
-    //def mvnHome = tool 'maven3.6'
-    //def jdkHome = tool 'jdk1.7'
-    //env.PATH = "${mvnHome}/bin:${jdkHome}/bin:${evn.PATH}"
+    def mvnHome = tool 'maven3.6'
+    def jdkHome = tool 'jdk1.7'
+    env.PATH = "${mvnHome}/bin:${jdkHome}/bin:${evn.PATH}"
     stage('Build'){
     //    sh "mvn clean package -Dmaven.test.skip=true -U"
         sh "mvn clean install"
